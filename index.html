@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>홍길동 · 포트폴리오</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F7F5F2;
+      --surface: #FFFFFF;
+      --text: #1A1A1A;
+      --text-sub: #6B6B6B;
+      --accent: #1A4FA0;
+      --accent-light: #E8EFF9;
+      --border: #E2DDD8;
+      --green: #1A6B3C;
+      --green-light: #E8F4EE;
+      --tag-bg: #F0EDE9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(247,245,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 56px;
+    }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); letter-spacing: 0.01em; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { font-size: 13px; color: var(--text-sub); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      max-width: 860px; margin: 0 auto;
+      padding: 5rem 2rem 3.5rem;
+      display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start;
+      animation: fadeUp 0.7s ease both;
+    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    .hero-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .hero-title {
+      font-size: 15px; font-weight: 400; color: var(--accent);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .hero-contacts { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.5rem; }
+    .contact-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; color: var(--text-sub);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 30px; padding: 5px 14px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-chip:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-chip svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .avatar-wrap {
+      width: 110px; height: 110px; border-radius: 50%;
+      background: var(--accent-light);
+      border: 3px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); max-width: 860px; margin: 0 auto; }
+
+    /* MAIN */
+    main { max-width: 860px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+    /* SECTION */
+    .section { padding: 3rem 0 0; animation: fadeUp 0.7s ease both; }
+    .section:nth-child(2) { animation-delay: 0.1s; }
+    .section:nth-child(3) { animation-delay: 0.15s; }
+    .section:nth-child(4) { animation-delay: 0.2s; }
+    .section:nth-child(5) { animation-delay: 0.25s; }
+
+    .sec-label {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-sub); font-weight: 500;
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .sec-label::after { content:''; flex:1; height:1px; background: var(--border); }
+
+    /* INTRO */
+    .intro-text {
+      font-size: 15px; color: var(--text-sub); line-height: 1.85;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem 1.75rem;
+    }
+
+    /* CARDS */
+    .card-list { display: flex; flex-direction: column; gap: 12px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      display: grid; grid-template-columns: 1fr auto; gap: 4px 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { border-color: #C8C2BA; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .card-title { font-size: 15px; font-weight: 500; grid-column: 1; }
+    .card-badge {
+      font-size: 11px; padding: 3px 10px;
+      background: var(--accent-light); color: var(--accent);
+      border-radius: 20px; font-weight: 500;
+      grid-column: 2; grid-row: 1; align-self: start; white-space: nowrap;
+    }
+    .card-sub { font-size: 13px; color: var(--text-sub); grid-column: 1; }
+    .card-desc { font-size: 13px; color: var(--text-sub); line-height: 1.65; grid-column: 1 / -1; margin-top: 6px; }
+
+    /* SKILLS */
+    .skills-wrap { display: flex; flex-direction: column; gap: 1.25rem; }
+    .skills-group-label { font-size: 12px; font-weight: 500; color: var(--text-sub); margin-bottom: 8px; letter-spacing: 0.04em; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-size: 13px; padding: 5px 14px;
+      border-radius: 6px; background: var(--tag-bg);
+      border: 1px solid var(--border); color: var(--text);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .tag:hover { background: var(--surface); border-color: #C0BAB2; }
+    .tag.cert { background: var(--green-light); color: var(--green); border-color: #B7DCCA; }
+
+    /* PORTFOLIO */
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    .port-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.4rem;
+      display: flex; flex-direction: column; gap: 8px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .port-card:hover { border-color: #C8C2BA; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .port-title { font-size: 14px; font-weight: 500; }
+    .port-date { font-size: 11px; color: var(--text-sub); }
+    .port-desc { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem;
+      font-size: 12px; color: var(--text-sub);
+      border-top: 1px solid var(--border);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1.2rem; }
+      .hero { grid-template-columns: 1fr; padding: 3rem 1.25rem 2rem; }
+      .avatar-wrap { width: 80px; height: 80px; font-size: 1.5rem; }
+      main { padding: 0 1.25rem 3rem; }
+      .card { grid-template-columns: 1fr; }
+      .card-badge { grid-column: 1; grid-row: auto; width: fit-content; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Portfolio</span>
+  <div class="nav-links">
+    <a href="#about">자기소개</a>
+    <a href="#edu">학력</a>
+    <a href="#career">경력</a>
+    <a href="#skills">스킬</a>
+    <a href="#portfolio">포트폴리오</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-title">경영지원 · 기획</div>
+    <h1 class="hero-name">홍길동</h1>
+    <div class="hero-contacts">
+      <span class="contact-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        email@example.com
+      </span>
+      <span class="contact-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.05 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 17z"/></svg>
+        010-0000-0000
+      </span>
+      <span class="contact-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        서울특별시
+      </span>
+    </div>
+  </div>
+  <div class="avatar-wrap">홍길</div>
+</section>
+
+<hr class="divider" />
+
+<main>
+
+  <section class="section" id="about">
+    <div class="sec-label">자기소개</div>
+    <div class="intro-text">
+      안녕하세요. 경영지원 분야에서 체계적인 업무 처리와 데이터 기반 의사결정을 통해 조직의 성장에 기여하고자 하는 지원자입니다.
+      꼼꼼한 업무 처리 능력과 원활한 커뮤니케이션 스킬을 바탕으로 팀워크를 이끌어 나갑니다.
+      변화하는 환경에 빠르게 적응하며, AI 및 디지털 도구를 활용한 업무 효율화에도 관심이 많습니다.
+    </div>
+  </section>
+
+  <section class="section" id="edu">
+    <div class="sec-label">학력</div>
+    <div class="card-list">
+      <div class="card">
+        <div class="card-title">○○대학교 경영학과</div>
+        <div class="card-badge">2020.03 – 2024.02</div>
+        <div class="card-sub">학사 졸업 · 학점 3.8 / 4.5</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="career">
+    <div class="sec-label">경력</div>
+    <div class="card-list">
+      <div class="card">
+        <div class="card-title">○○기업 경영지원팀 인턴</div>
+        <div class="card-badge">2023.07 – 2023.12</div>
+        <div class="card-sub">경영지원팀 · 6개월</div>
+        <div class="card-desc">문서 관리 및 행정 업무 지원, 사내 보고서 작성, 데이터 정리 및 분석 보조 업무 수행</div>
+      </div>
+      <div class="card">
+        <div class="card-title">학생회 기획부장</div>
+        <div class="card-badge">2022.03 – 2023.02</div>
+        <div class="card-sub">경영학과 학생회</div>
+        <div class="card-desc">학과 행사 기획 및 예산 관리, 30명 규모 팀 운영</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="sec-label">스킬 &amp; 자격증</div>
+    <div class="skills-wrap">
+      <div>
+        <div class="skills-group-label">보유 스킬</div>
+        <div class="tags">
+          <span class="tag">MS Office (Excel / Word / PPT)</span>
+          <span class="tag">데이터 분석</span>
+          <span class="tag">문서 기획</span>
+          <span class="tag">회의록 작성</span>
+          <span class="tag">ERP 기초</span>
+          <span class="tag">영어 업무 가능</span>
+          <span class="tag">AI 툴 활용</span>
+        </div>
+      </div>
+      <div>
+        <div class="skills-group-label">자격증</div>
+        <div class="tags">
+          <span class="tag cert">컴퓨터활용능력 1급</span>
+          <span class="tag cert">MOS Expert</span>
+          <span class="tag cert">TOEIC 850</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="portfolio">
+    <div class="sec-label">포트폴리오</div>
+    <div class="portfolio-grid">
+      <div class="port-card">
+        <div class="port-date">2023.09</div>
+        <div class="port-title">경영 분석 보고서 프로젝트</div>
+        <div class="port-desc">국내 중소기업 경영지원 업무 효율화 방안 분석 · Excel 데이터 분석 + PPT 발표 자료 작성</div>
+      </div>
+      <div class="port-card">
+        <div class="port-date">2022.11</div>
+        <div class="port-title">학과 예산 관리 시스템 설계</div>
+        <div class="port-desc">학생회 연간 예산 300만원 관리용 Excel 자동화 시트 구축 및 운영</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 홍길동 · 취업용 포트폴리오
+</footer>
+
+</body>
+</html>
